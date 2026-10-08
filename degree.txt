@@ -1,0 +1,37 @@
+CREATE DATABASE degree;
+
+USE degree;
+
+CREATE TABLE student (
+    ID INT(10) PRIMARY KEY AUTO_INCREMENT,
+    STUDENT_NAME VARCHAR(1000),
+    EMAIL VARCHAR(100),
+    MOBILE_NUMBER INT(10),
+    GENDER TEXT,
+    PASSWORD VARCHAR(100)
+);
+
+CREATE TABLE events (
+    ID INT(10) PRIMARY KEY,
+    Name VARCHAR(100),
+    Venue VARCHAR(100),
+    Start_Time TIME(6),
+    End_Time TIME(6),
+    Date DATE,
+
+    CONSTRAINT fk_events_student
+    FOREIGN KEY (ID)
+    REFERENCES student(ID)
+);
+
+CREATE TABLE registration (
+    ID INT(10) PRIMARY KEY,
+    Student_Name VARCHAR(100),
+    Event_Name VARCHAR(100),
+    Date DATE,
+    Venue VARCHAR(100),
+
+    CONSTRAINT fk_registration_student
+    FOREIGN KEY (ID)
+    REFERENCES student(ID)
+);
